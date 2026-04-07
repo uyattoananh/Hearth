@@ -39,3 +39,5 @@ backend/*.png
 !frontend/src/assets/*.png
 !frontend/src/assets/*.webp
 !frontend/build/*.png
+!frontend/build/*.ico
+!frontend/build/*.icns
