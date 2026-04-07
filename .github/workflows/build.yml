@@ -38,24 +38,28 @@ jobs:
         working-directory: frontend
         run: npm install
 
-      - name: Build (Windows)
+      - name: Vite build
+        working-directory: frontend
+        run: npm run build
+
+      - name: Electron-builder (Windows)
         if: matrix.os == 'windows-latest'
         working-directory: frontend
-        run: npm run dist:win
+        run: npx electron-builder --win --publish never
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Build (macOS)
+      - name: Electron-builder (macOS)
         if: matrix.os == 'macos-latest'
         working-directory: frontend
-        run: npm run dist:mac
+        run: npx electron-builder --mac --publish never
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Build (Linux)
+      - name: Electron-builder (Linux)
         if: matrix.os == 'ubuntu-latest'
         working-directory: frontend
-        run: npm run dist:linux
+        run: npx electron-builder --linux --publish never
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
