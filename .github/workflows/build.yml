@@ -78,6 +78,37 @@ jobs:
           path: frontend/build.log
           if-no-files-found: ignore
 
+      - name: Post build log as commit comment on failure
+        if: failure()
+        shell: python
+        working-directory: frontend
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          REPO: ${{ github.repository }}
+          SHA: ${{ github.sha }}
+          OS: ${{ matrix.os }}
+        run: |
+          import json, os, urllib.request, pathlib
+          p = pathlib.Path('build.log')
+          if not p.exists():
+              print('no build.log')
+              raise SystemExit(0)
+          tail = p.read_text(errors='replace')[-60000:]
+          body = f"### Build log ({os.environ['OS']})\n\n```\n{tail}\n```\n"
+          req = urllib.request.Request(
+              f"https://api.github.com/repos/{os.environ['REPO']}/commits/{os.environ['SHA']}/comments",
+              data=json.dumps({'body': body}).encode(),
+              headers={
+                  'Authorization': f"Bearer {os.environ['GH_TOKEN']}",
+                  'Accept': 'application/vnd.github+json',
+              },
+              method='POST',
+          )
+          try:
+              print(urllib.request.urlopen(req).read().decode()[:300])
+          except Exception as e:
+              print('post failed:', e)
+
       - name: Upload artifacts
         uses: actions/upload-artifact@v4
         with:
