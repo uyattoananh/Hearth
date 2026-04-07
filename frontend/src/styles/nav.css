@@ -1,0 +1,857 @@
+/* ════════════════════════════════════════════════════════ */
+/* NAVIGATION MODE PICKER                                   */
+/* ════════════════════════════════════════════════════════ */
+
+.nav-mode-picker {
+  position: fixed;
+  bottom: 60px;
+  right: 60px;
+  background: rgba(20, 20, 25, 0.97);
+  border: 1px solid rgba(255,255,255,0.15);
+  border-radius: 8px;
+  padding: 6px;
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.7);
+  min-width: 140px;
+}
+
+.nav-mode-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 12px;
+  color: #ddd;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+
+.nav-mode-item:hover {
+  background: rgba(255,255,255,0.08);
+}
+
+.nav-mode-item.active {
+  background: rgba(88, 101, 242, 0.4);
+  color: white;
+}
+
+.nav-mode-icon {
+  font-size: 16px;
+}
+
+/* ════════════════════════════════════════════════════════ */
+/* NAVIGATION MODES — Map / Subway / Hexagon / Telescope    */
+/* ════════════════════════════════════════════════════════ */
+
+.nav-container {
+  width: 280px;
+  height: 100%;
+  background: var(--surface);
+  border-right: 1px solid var(--border);
+  flex-shrink: 0;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.nav-container.wide { width: 380px; }
+
+.nav-header {
+  padding: 8px 12px;
+  border-bottom: 1px solid var(--border);
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--text-dim);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  flex-shrink: 0;
+}
+
+.nav-canvas {
+  flex: 1;
+  overflow: hidden;
+  position: relative;
+}
+
+/* ── MAP NAV ──────────────────────────────────────────── */
+
+.map-svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.map-node {
+  cursor: pointer;
+  transition: transform 0.25s ease;
+}
+
+.map-node circle {
+  fill: var(--surface);
+  stroke: var(--border);
+  stroke-width: 2;
+  transition: all 0.25s ease;
+}
+
+.map-node:hover circle {
+  fill: var(--surface-hover);
+  stroke: var(--accent);
+  stroke-width: 3;
+}
+
+.map-node.active circle {
+  fill: var(--accent);
+  stroke: var(--text);
+  stroke-width: 3;
+  filter: drop-shadow(0 0 8px var(--accent));
+}
+
+.map-node.unread circle {
+  animation: mapPulse 2s ease-in-out infinite;
+}
+
+@keyframes mapPulse {
+  0%, 100% { stroke-opacity: 1; }
+  50% { stroke-opacity: 0.4; filter: drop-shadow(0 0 12px var(--accent)); }
+}
+
+.map-node text {
+  fill: var(--text);
+  font-size: 9px;
+  text-anchor: middle;
+  pointer-events: none;
+  font-family: var(--font);
+}
+
+.map-node image {
+  pointer-events: none;
+  clip-path: circle(50%);
+}
+
+.map-route {
+  stroke: var(--accent);
+  stroke-width: 1;
+  stroke-dasharray: 3 3;
+  opacity: 0.4;
+  fill: none;
+}
+
+.map-back-btn {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background: var(--surface-hover);
+  border: 1px solid var(--border);
+  color: var(--text);
+  padding: 4px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 11px;
+  font-family: var(--font);
+  z-index: 10;
+}
+
+.map-back-btn:hover { background: var(--accent); }
+
+/* ── SUBWAY NAV ───────────────────────────────────────── */
+
+.subway-canvas {
+  width: 100%;
+  height: 100%;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: 6px 0;
+}
+
+.subway-row {
+  display: flex;
+  align-items: flex-start;
+  padding: 4px 8px;
+  margin-bottom: 2px;
+  --line-color: #5865f2;
+  position: relative;
+}
+
+.subway-row.expanded {
+  padding-bottom: 8px;
+}
+
+.subway-terminus {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 12px;
+  color: #fff;
+  cursor: pointer;
+  overflow: hidden;
+  border: 2px solid;
+  flex-shrink: 0;
+  position: relative;
+  z-index: 2;
+  transition: transform 0.15s;
+}
+
+.subway-terminus img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+.subway-terminus:hover { transform: scale(1.1); filter: brightness(1.2); }
+
+.subway-row.active .subway-terminus {
+  box-shadow: 0 0 0 2px var(--text), 0 0 12px var(--line-color);
+}
+
+.subway-unread-dot {
+  position: absolute;
+  top: -2px;
+  right: -2px;
+  width: 10px;
+  height: 10px;
+  background: #f23f43;
+  border-radius: 50%;
+  border: 2px solid var(--surface);
+}
+
+.subway-row-info {
+  flex: 1;
+  margin-left: 10px;
+  min-width: 0;
+}
+
+.subway-row-name {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text);
+  cursor: pointer;
+  padding: 6px 0 4px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.subway-row-name:hover { color: var(--accent); }
+
+.subway-row-badge {
+  color: #f23f43;
+  font-size: 10px;
+  flex-shrink: 0;
+}
+
+.subway-track-container {
+  position: relative;
+  margin-top: 4px;
+  padding-left: 6px;
+}
+
+.subway-track {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 3px;
+  border-radius: 2px;
+  opacity: 0.6;
+}
+
+.subway-stations-list {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 2px 0 4px 12px;
+}
+
+.subway-station {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 2px 6px;
+  border-radius: 4px;
+  cursor: pointer;
+  position: relative;
+}
+
+.subway-station::before {
+  content: '';
+  position: absolute;
+  left: -7px;
+  top: 50%;
+  width: 5px;
+  height: 1px;
+  background: var(--line-color);
+  opacity: 0.6;
+}
+
+.subway-station-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--bg);
+  border: 2px solid;
+  flex-shrink: 0;
+  transition: all 0.15s;
+}
+
+.subway-station:hover {
+  background: var(--surface-hover);
+}
+
+.subway-station:hover .subway-station-dot {
+  transform: scale(1.2);
+}
+
+.subway-station.active {
+  background: var(--surface-hover);
+}
+
+.subway-station.active .subway-station-dot {
+  background: var(--text);
+  box-shadow: 0 0 8px var(--text);
+  animation: subwayPulse 1.6s ease-in-out infinite;
+}
+
+@keyframes subwayPulse {
+  0%, 100% { box-shadow: 0 0 6px var(--text); }
+  50% { box-shadow: 0 0 14px var(--text), 0 0 3px var(--text); }
+}
+
+.subway-station-name {
+  font-size: 11px;
+  color: var(--text-dim);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  flex: 1;
+}
+
+.subway-station.active .subway-station-name,
+.subway-station.unread .subway-station-name {
+  color: var(--text);
+  font-weight: 600;
+}
+
+.subway-station-badge {
+  color: #f23f43;
+  font-size: 9px;
+  flex-shrink: 0;
+}
+
+.subway-empty {
+  font-size: 10px;
+  color: var(--text-dim);
+  font-style: italic;
+  padding: 4px 0;
+}
+
+/* ── HEXAGON NAV ──────────────────────────────────────── */
+
+.hex-scroll {
+  width: 100%;
+  height: 100%;
+  overflow-y: auto;
+  padding: 14px;
+}
+
+.hex-cluster {
+  margin-bottom: 24px;
+}
+
+.hex-cluster-title {
+  font-size: 10px;
+  font-weight: 700;
+  color: var(--text-dim);
+  text-transform: uppercase;
+  margin-bottom: 6px;
+  letter-spacing: 1px;
+}
+
+.hex-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 2px;
+}
+
+.hex-tile {
+  width: var(--hex-w, 70px);
+  height: var(--hex-h, 80px);
+  clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+  background: var(--surface-hover);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  position: relative;
+  transition: transform 0.15s, background 0.15s;
+  flex-shrink: 0;
+  overflow: hidden;
+}
+
+.hex-tile img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.hex-tile-label {
+  font-size: var(--hex-font, 10px);
+  font-weight: 500;
+  color: var(--text);
+  text-align: center;
+  padding: 3px 8px;
+  word-break: break-word;
+  line-height: 1.15;
+  max-width: 92%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: var(--hex-lines, 3);
+  -webkit-box-orient: vertical;
+  text-shadow: 0 1px 2px rgba(0,0,0,0.5);
+}
+
+.hex-tile:hover {
+  transform: scale(1.08);
+  z-index: 10;
+  background: var(--surface);
+}
+
+.hex-tile.active {
+  background: var(--accent);
+  box-shadow: 0 0 0 2px var(--accent);
+}
+
+.hex-tile.active .hex-tile-label {
+  color: white;
+  font-weight: 700;
+}
+
+.hex-tile.unread::after {
+  content: '';
+  position: absolute;
+  top: 10px;
+  right: 14px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #f23f43;
+  box-shadow: 0 0 6px #f23f43;
+}
+
+/* Honeycomb offset (uses CSS vars from .hex-grid) */
+.hex-row {
+  display: flex;
+  gap: 3px;
+}
+
+.hex-row:nth-child(even) {
+  margin-left: var(--hex-offset, 36px);
+}
+
+.hex-row + .hex-row {
+  margin-top: calc(var(--hex-overlap, 22px) * -1);
+}
+
+/* ── TELESCOPE NAV ────────────────────────────────────── */
+
+/* ── SOLAR SYSTEM TELESCOPE NAV ───────────────────────── */
+
+/* Pause all orbital animations via React state */
+.solar-canvas.paused .solar-planet-mini,
+.solar-canvas.paused .solar-planet-orbit,
+.solar-canvas.paused .solar-planet-counter,
+.solar-canvas.paused .solar-sun,
+.solar-canvas.paused .solar-sun-big {
+  animation-play-state: paused !important;
+}
+
+.solar-canvas {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  background-color: #04001a;
+  background-image:
+    radial-gradient(circle 1px at 12% 18%, white 50%, transparent),
+    radial-gradient(circle 1px at 28% 42%, white 50%, transparent),
+    radial-gradient(circle 1px at 78% 22%, white 50%, transparent),
+    radial-gradient(circle 1px at 55% 65%, white 50%, transparent),
+    radial-gradient(circle 1px at 88% 78%, white 50%, transparent),
+    radial-gradient(circle 1px at 35% 88%, white 50%, transparent),
+    radial-gradient(circle 1px at 18% 72%, white 50%, transparent),
+    radial-gradient(circle 1px at 65% 35%, white 50%, transparent),
+    radial-gradient(circle 1px at 92% 50%, white 50%, transparent),
+    radial-gradient(circle 1px at 8% 95%, white 50%, transparent),
+    radial-gradient(circle 1px at 48% 12%, white 50%, transparent),
+    radial-gradient(circle 1px at 72% 92%, white 50%, transparent),
+    radial-gradient(ellipse 70% 40% at 25% 35%, rgba(120, 50, 180, 0.25) 0%, transparent 70%),
+    radial-gradient(ellipse 50% 30% at 75% 65%, rgba(50, 100, 200, 0.2) 0%, transparent 70%),
+    radial-gradient(ellipse 40% 25% at 60% 25%, rgba(180, 60, 120, 0.15) 0%, transparent 70%),
+    linear-gradient(180deg, #0a0228 0%, #04001a 100%);
+  overflow: hidden;
+}
+
+.solar-galaxy {
+  position: absolute;
+  inset: 0;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.solar-galaxy::-webkit-scrollbar {
+  width: 0;
+}
+
+/* Mini solar system in galaxy view */
+.solar-mini {
+  position: absolute;
+  width: 80px;
+  height: 110px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.solar-mini:hover {
+  transform: scale(1.15);
+  z-index: 10;
+}
+
+.solar-orbit-ring {
+  position: absolute;
+  border: 1px dashed rgba(255, 255, 255, 0.12);
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+.solar-sun {
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 11px;
+  color: #fff;
+  text-shadow: 0 0 4px rgba(0,0,0,0.8);
+  overflow: hidden;
+  position: relative;
+  z-index: 3;
+  border: 1px solid rgba(255,255,255,0.5);
+}
+
+.solar-sun img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+.solar-sun.active {
+  border-color: #fff;
+  border-width: 2px;
+  animation: sunPulse 2s ease-in-out infinite;
+}
+
+@keyframes sunPulse {
+  0%, 100% { box-shadow: 0 0 16px currentColor; }
+  50% { box-shadow: 0 0 28px currentColor, 0 0 40px currentColor; }
+}
+
+.solar-planet-mini {
+  position: absolute;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  top: 50%;
+  left: 50%;
+  margin: -2.5px 0 0 -2.5px;
+  pointer-events: none;
+  box-shadow: 0 0 4px currentColor;
+}
+
+@keyframes orbitMini {
+  from { transform: rotate(0deg) translateX(var(--mini-radius, 28px)) rotate(0deg); }
+  to { transform: rotate(360deg) translateX(var(--mini-radius, 28px)) rotate(-360deg); }
+}
+
+.solar-label {
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  right: 0;
+  text-align: center;
+  font-size: 9px;
+  color: #fff;
+  text-shadow: 0 0 4px rgba(0,0,0,0.9), 0 0 8px rgba(0,0,0,0.7);
+  font-family: var(--font);
+  pointer-events: none;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Focused (zoomed in) view */
+.solar-focused {
+  position: absolute;
+  inset: 0;
+}
+
+.solar-back-btn {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background: rgba(20, 15, 40, 0.85);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  color: #fff;
+  padding: 4px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 11px;
+  font-family: var(--font);
+  z-index: 20;
+}
+
+.solar-back-btn:hover { background: rgba(60, 40, 100, 0.9); }
+
+.solar-sun-big {
+  position: absolute;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+  border: 2px solid rgba(255,255,255,0.7);
+  animation: sunPulse 3s ease-in-out infinite;
+  overflow: hidden;
+}
+
+.solar-sun-big img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+.solar-sun-label {
+  position: absolute;
+  width: 120px;
+  text-align: center;
+  font-size: 12px;
+  font-weight: 700;
+  color: #fff;
+  text-shadow: 0 0 6px rgba(0,0,0,0.9), 0 0 12px rgba(0,0,0,0.6);
+  font-family: var(--font);
+  pointer-events: none;
+  z-index: 10;
+}
+
+/* Orbital container — rotates around the sun */
+.solar-planet-orbit {
+  position: absolute;
+  width: 0;
+  height: 0;
+  pointer-events: none;
+}
+
+/* Counter-rotates so contents stay upright */
+.solar-planet-counter {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  pointer-events: none;
+}
+
+.solar-planet {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  cursor: pointer;
+  pointer-events: auto;
+  border: 1px solid rgba(255,255,255,0.4);
+  flex-shrink: 0;
+  transition: transform 0.15s;
+}
+
+.solar-planet:hover {
+  transform: scale(1.6);
+  z-index: 20;
+}
+
+.solar-planet.active {
+  width: 18px;
+  height: 18px;
+  border: 2px solid #fff;
+  box-shadow: 0 0 12px currentColor, 0 0 20px currentColor;
+}
+
+.solar-planet-label {
+  margin-left: 4px;
+  font-size: 9px;
+  color: #fff;
+  text-shadow: 0 0 4px rgba(0,0,0,0.95), 0 0 8px rgba(0,0,0,0.7);
+  white-space: nowrap;
+  pointer-events: none;
+  font-family: var(--font);
+}
+
+@keyframes orbitFull {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes counterRotate {
+  from { transform: translateX(var(--radius, 0px)) rotate(0deg); }
+  to { transform: translateX(var(--radius, 0px)) rotate(-360deg); }
+}
+
+.telescope-canvas {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  background-color: #050218;
+  background-image: url('../assets/galaxy.png');
+  background-size: cover;
+  background-position: center;
+  overflow: hidden;
+}
+
+.telescope-stars {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 60% 40% at 30% 50%, rgba(120, 80, 200, 0.15) 0%, transparent 60%),
+    radial-gradient(ellipse 40% 30% at 75% 30%, rgba(80, 120, 220, 0.12) 0%, transparent 60%);
+  pointer-events: none;
+  animation: nebulaPulse 8s ease-in-out infinite alternate;
+}
+
+@keyframes nebulaPulse {
+  0% { opacity: 0.5; }
+  100% { opacity: 1; }
+}
+
+.telescope-content {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.5s ease, opacity 0.3s;
+}
+
+.telescope-node {
+  position: absolute;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  transition: transform 0.25s;
+}
+
+.telescope-node:hover {
+  transform: scale(1.15);
+}
+
+.telescope-node-circle {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: rgba(20, 15, 40, 0.9);
+  border: 2px solid #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  box-shadow: 0 0 16px rgba(180, 200, 255, 0.5), 0 0 4px rgba(255, 255, 255, 0.6);
+}
+
+.telescope-node.large .telescope-node-circle {
+  width: 70px;
+  height: 70px;
+  box-shadow: 0 0 30px rgba(100, 150, 255, 0.6);
+}
+
+.telescope-node.active .telescope-node-circle {
+  border-color: #fff;
+  box-shadow: 0 0 30px rgba(255, 255, 255, 0.8);
+}
+
+.telescope-node img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+.telescope-node-label {
+  font-size: 9px;
+  color: white;
+  text-shadow: 0 0 4px rgba(0,0,0,0.8);
+  text-align: center;
+  max-width: 80px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.telescope-controls {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  display: flex;
+  gap: 4px;
+  z-index: 20;
+}
+
+.telescope-btn {
+  width: 28px;
+  height: 28px;
+  background: rgba(0, 0, 0, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  color: white;
+  font-size: 14px;
+  cursor: pointer;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.telescope-btn:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.telescope-orbit {
+  position: absolute;
+  border: 1px dashed rgba(255, 255, 255, 0.15);
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+@keyframes telescopeFloat {
+  0%, 100% { transform: translate(0, 0); }
+  50% { transform: translate(2px, -2px); }
+}
+
+.telescope-node {
+  animation: telescopeFloat 4s ease-in-out infinite;
+}

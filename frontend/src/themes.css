@@ -1,0 +1,741 @@
+/* ── Default (dark glass) ──────────────────────────── */
+:root {
+  --bg: rgba(10, 10, 10, 0.92);
+  --surface: rgba(255, 255, 255, 0.06);
+  --surface-hover: rgba(255, 255, 255, 0.09);
+  --border: rgba(255, 255, 255, 0.08);
+  --text: #f0f0f0;
+  --text-dim: rgba(255, 255, 255, 0.5);
+  --accent: #5865f2;
+  --accent-hover: #4752c4;
+  --input-bg: rgba(255, 255, 255, 0.08);
+  --scrollbar: rgba(255, 255, 255, 0.1);
+  --shell-radius: 12px;
+  --msg-radius: 6px;
+  --font: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --blur: blur(30px);
+}
+
+/* ── Light ─────────────────────────────────────────── */
+[data-theme="light"] {
+  --bg: #f5f5f7;
+  --surface: #e8e8ec;
+  --surface-hover: #dddde2;
+  --border: #d0d0d5;
+  --text: #1a1a1a;
+  --text-dim: #777;
+  --accent: #5865f2;
+  --accent-hover: #4752c4;
+  --input-bg: #e0e0e4;
+  --scrollbar: #c0c0c5;
+  --shell-radius: 14px;
+  --msg-radius: 8px;
+  --font: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  --blur: none;
+}
+
+/* ── Windows XP ────────────────────────────────────── */
+[data-theme="xp"] {
+  --bg: #ece9d8;
+  --surface: #fff;
+  --surface-hover: #e8f0fc;
+  --border: #aca899;
+  --text: #000;
+  --text-dim: #4a4a4a;
+  --accent: #0997ff;
+  --accent-hover: #003bb5;
+  --input-bg: #fff;
+  --scrollbar: #aca899;
+  --shell-radius: 8px;
+  --msg-radius: 4px;
+  --font: 'Tahoma', 'Segoe UI', sans-serif;
+  --blur: none;
+}
+[data-theme="xp"] .titlebar {
+  background: linear-gradient(180deg, #0997ff 0%, #003bb5 100%);
+  border-radius: 8px 8px 0 0;
+}
+[data-theme="xp"] .titlebar-title,
+[data-theme="xp"] .titlebar-btn { color: #fff; }
+[data-theme="xp"] .send-btn { border-radius: 4px; }
+
+/* ── Vinyl ─────────────────────────────────────────── */
+[data-theme="vinyl"] {
+  --bg: #2c2218;
+  --surface: #3d3127;
+  --surface-hover: #4a3d32;
+  --border: #5a4a3a;
+  --text: #f0e0c8;
+  --text-dim: #a08868;
+  --accent: #d4a060;
+  --accent-hover: #c08840;
+  --input-bg: #3d3127;
+  --scrollbar: #5a4a3a;
+  --shell-radius: 14px;
+  --msg-radius: 8px;
+  --font: 'Georgia', 'Times New Roman', serif;
+  --blur: none;
+}
+
+/* ── Neon ──────────────────────────────────────────── */
+[data-theme="neon"] {
+  --bg: #08000f;
+  --surface: #1a0a2a;
+  --surface-hover: #2a1040;
+  --border: #3a1a55;
+  --text: #fff;
+  --text-dim: #66cccc;
+  --accent: #ff00ff;
+  --accent-hover: #cc00cc;
+  --input-bg: #1a0a2a;
+  --scrollbar: #3a1a55;
+  --shell-radius: 16px;
+  --msg-radius: 8px;
+  --font: 'Inter', -apple-system, sans-serif;
+  --blur: none;
+}
+[data-theme="neon"] .titlebar { border-bottom-color: #4400aa; }
+[data-theme="neon"] .msg-author { text-shadow: 0 0 6px #00ffff; }
+[data-theme="neon"] .send-btn { box-shadow: 0 0 12px rgba(255, 0, 255, 0.4); }
+[data-theme="neon"] .app-shell { border-color: #4400aa; }
+
+/* ── Radio ─────────────────────────────────────────── */
+[data-theme="radio"] {
+  --bg: #1c1410;
+  --surface: #2e2218;
+  --surface-hover: #3a2c20;
+  --border: #4a3828;
+  --text: #ffd599;
+  --text-dim: #a08050;
+  --accent: #ffa040;
+  --accent-hover: #e08820;
+  --input-bg: #2e2218;
+  --scrollbar: #4a3828;
+  --shell-radius: 14px;
+  --msg-radius: 8px;
+  --font: 'Georgia', serif;
+  --blur: none;
+}
+
+/* ── Retro ─────────────────────────────────────────── */
+[data-theme="retro"] {
+  --bg: #FFF5D5;
+  --surface: #f0e8c8;
+  --surface-hover: #e8deb8;
+  --border: #000;
+  --text: #000;
+  --text-dim: #555;
+  --accent: #000;
+  --accent-hover: #333;
+  --input-bg: #f0e8c8;
+  --scrollbar: #000;
+  --shell-radius: 0px;
+  --msg-radius: 0px;
+  --font: 'JetBrains Mono', 'Courier New', 'Consolas', monospace;
+  --blur: none;
+}
+[data-theme="retro"] .send-btn { border-radius: 0; color: #FFF5D5; }
+
+/* ── Terminal ──────────────────────────────────────── */
+[data-theme="terminal"] {
+  --bg: #0a0a0a;
+  --surface: #141414;
+  --surface-hover: #1e1e1e;
+  --border: #1db954;
+  --text: #1db954;
+  --text-dim: #0d8a3a;
+  --accent: #1db954;
+  --accent-hover: #169c46;
+  --input-bg: #141414;
+  --scrollbar: #1db954;
+  --shell-radius: 0px;
+  --msg-radius: 0px;
+  --font: 'JetBrains Mono', 'Courier New', monospace;
+  --blur: none;
+}
+[data-theme="terminal"] .send-btn { border-radius: 0; }
+[data-theme="terminal"] .msg-author { text-shadow: 0 0 4px rgba(29, 185, 84, 0.3); }
+[data-theme="terminal"] .app-shell { border-color: #1db954; }
+
+/* ── Bloom ─────────────────────────────────────────── */
+[data-theme="bloom"] {
+  --bg: #1a1028;
+  --surface: #2a1e3a;
+  --surface-hover: #3a2e4e;
+  --border: #4a3a5a;
+  --text: #e8daf0;
+  --text-dim: #9888aa;
+  --accent: #c4a0e8;
+  --accent-hover: #a880d0;
+  --input-bg: #2a1e3a;
+  --scrollbar: #4a3a5a;
+  --shell-radius: 16px;
+  --msg-radius: 10px;
+  --font: 'Inter', -apple-system, sans-serif;
+  --blur: blur(30px);
+}
+
+/* ── Starry ────────────────────────────────────────── */
+[data-theme="starry"] {
+  --bg: #0a0a2e;
+  --surface: #151540;
+  --surface-hover: #1e1e55;
+  --border: #2a2a60;
+  --text: #e8e8ff;
+  --text-dim: #8888bb;
+  --accent: #fff;
+  --accent-hover: #ddd;
+  --input-bg: #151540;
+  --scrollbar: #2a2a60;
+  --shell-radius: 14px;
+  --msg-radius: 8px;
+  --font: 'Inter', -apple-system, sans-serif;
+  --blur: blur(30px);
+}
+[data-theme="starry"] .send-btn { color: #0a0a2e; }
+[data-theme="starry"] .msg-self .msg-bubble { background: rgba(255, 255, 255, 0.15); }
+[data-theme="starry"] .msg-self .msg-content { color: #e8e8ff; }
+
+/* ── Ziro ──────────────────────────────────────────── */
+[data-theme="ziro"] {
+  --bg: #1a1a2e;
+  --surface: #22223a;
+  --surface-hover: #2e2e48;
+  --border: #3a3a5e;
+  --text: #e8e8f0;
+  --text-dim: #8888aa;
+  --accent: #15a4ef;
+  --accent-hover: #1090d8;
+  --input-bg: #22223a;
+  --scrollbar: #3a3a5e;
+  --shell-radius: 12px;
+  --msg-radius: 6px;
+  --font: 'Inter', -apple-system, sans-serif;
+  --blur: none;
+}
+
+/* ── A Chat with My Dear Friend (8-bit pixel art) ──── */
+/* Background art: "Sit down and rest by the bonfire"   */
+/* by u/Commercial-Dog5148 on r/PixelArt                */
+[data-theme="dearfriend"] {
+  --bg: rgba(15, 8, 20, 0.85);
+  --surface: rgba(40, 20, 10, 0.7);
+  --surface-hover: rgba(60, 30, 15, 0.7);
+  --border: #8b5e3c;
+  --text: #ffecd2;
+  --text-dim: #c09060;
+  --accent: #ff9933;
+  --accent-hover: #e07a1a;
+  --input-bg: rgba(30, 15, 8, 0.8);
+  --scrollbar: #8b5e3c;
+  --shell-radius: 0px;
+  --msg-radius: 0px;
+  --font: 'Courier New', 'Consolas', monospace;
+  --blur: none;
+}
+[data-theme="dearfriend"] .app-shell {
+  border: 3px solid #d4a050;
+  box-shadow: inset 0 0 0 1px rgba(255, 200, 100, 0.3), 0 0 24px rgba(255, 140, 30, 0.2);
+}
+[data-theme="dearfriend"] .titlebar { background: rgba(40, 20, 8, 0.95); border-bottom: 2px solid #b8862c; }
+[data-theme="dearfriend"] .input-area { border-top: 2px solid #b8862c; background: rgba(40, 20, 8, 0.7); }
+[data-theme="dearfriend"] .channel-header { border-bottom: 2px solid #b8862c; background: rgba(40, 20, 8, 0.7); }
+[data-theme="dearfriend"] .message-area {
+  position: relative;
+  background-image: linear-gradient(rgba(10, 5, 15, 0.65), rgba(10, 5, 15, 0.65)), url("./assets/bonfire.webp");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-color: #000;
+  image-rendering: pixelated;
+}
+
+
+[data-theme="dearfriend"] .app-shell > * { position: relative; z-index: 1; }
+[data-theme="dearfriend"] .titlebar { background: rgba(20, 10, 5, 0.9); border-bottom: 2px solid #8b5e3c; }
+[data-theme="dearfriend"] .titlebar-title { font-family: 'Press Start 2P', monospace; font-size: 8px; color: #ff9933; }
+[data-theme="dearfriend"] .msg-bubble { border: 2px solid #8b5e3c; box-shadow: 2px 0 0 0 #8b5e3c, -2px 0 0 0 #8b5e3c, 0 2px 0 0 #8b5e3c, 0 -2px 0 0 #8b5e3c; }
+[data-theme="dearfriend"] .msg-other .msg-bubble { background: rgba(30, 15, 8, 0.85); }
+[data-theme="dearfriend"] .msg-self .msg-bubble { background: rgba(140, 70, 10, 0.85); border-color: #ff9933; box-shadow: 2px 0 0 0 #ff9933, -2px 0 0 0 #ff9933, 0 2px 0 0 #ff9933, 0 -2px 0 0 #ff9933; }
+[data-theme="dearfriend"] .msg-author { font-size: 9px; text-shadow: 1px 1px 0 rgba(0,0,0,0.5); }
+[data-theme="dearfriend"] .msg-content { font-size: 10px; line-height: 1.6; }
+[data-theme="dearfriend"] .msg-time { font-size: 7px; }
+[data-theme="dearfriend"] .send-btn { border-radius: 0; border: 2px solid #ff9933; font-family: 'Press Start 2P', monospace; font-size: 10px; }
+[data-theme="dearfriend"] .input-box { border: 2px solid #8b5e3c; border-radius: 0; font-size: 10px; }
+[data-theme="dearfriend"] .conv-current { border: 2px solid #8b5e3c; border-radius: 0; }
+[data-theme="dearfriend"] .conv-dropdown { border: 2px solid #8b5e3c; border-radius: 0; }
+[data-theme="dearfriend"] .conv-current-name, [data-theme="dearfriend"] .conv-dropdown-name { font-size: 9px; }
+[data-theme="dearfriend"] .typing-text { font-family: 'Press Start 2P', monospace; font-size: 8px; }
+[data-theme="dearfriend"] .typing-dots span { background: #ff9933; }
+[data-theme="dearfriend"] .context-menu { border: 2px solid #8b5e3c; border-radius: 0; background: rgba(20, 10, 5, 0.95); }
+[data-theme="dearfriend"] .emoji-grid-popup { border: 2px solid #8b5e3c; border-radius: 0; }
+[data-theme="dearfriend"] .input-bar { background: rgba(20, 10, 5, 0.9); border-color: #8b5e3c; }
+[data-theme="dearfriend"] .msg-reply-inline { border-left-color: #ff9933; font-size: 8px; }
+
+/* ── Glass ─────────────────────────────────────────── */
+[data-theme="glass"] {
+  --bg: rgba(20, 20, 30, 0.35);
+  --surface: rgba(255, 255, 255, 0.08);
+  --surface-hover: rgba(255, 255, 255, 0.14);
+  --border: rgba(255, 255, 255, 0.15);
+  --text: #fff;
+  --text-dim: rgba(255, 255, 255, 0.65);
+  --accent: rgba(255, 255, 255, 0.9);
+  --accent-hover: rgba(255, 255, 255, 0.75);
+  --input-bg: rgba(255, 255, 255, 0.08);
+  --scrollbar: rgba(255, 255, 255, 0.15);
+  --shell-radius: 16px;
+  --msg-radius: 8px;
+  --font: 'Inter', -apple-system, sans-serif;
+  --blur: blur(40px);
+}
+[data-theme="glass"] .send-btn { color: #111; }
+[data-theme="glass"] .msg-self .msg-bubble { background: rgba(255, 255, 255, 0.18); }
+[data-theme="glass"] .msg-self .msg-content { color: #fff; }
+[data-theme="glass"] .msg-self .msg-author { color: rgba(255, 255, 255, 0.7); }
+
+/* ═══════════════════════════════════════════════════════ */
+/* 1. VINYL RECORD — warm analog turntable aesthetic      */
+/*    CSS-only: spinning grooves background               */
+/* ═══════════════════════════════════════════════════════ */
+[data-theme="vinyl"] {
+  --bg: #1a1210;
+  --surface: rgba(60, 40, 25, 0.8);
+  --surface-hover: rgba(80, 55, 35, 0.8);
+  --border: #6b4c30;
+  --text: #f0dcc0;
+  --text-dim: #a08060;
+  --accent: #d4a050;
+  --accent-hover: #c08838;
+  --input-bg: rgba(50, 30, 18, 0.9);
+  --scrollbar: #6b4c30;
+  --shell-radius: 14px;
+  --msg-radius: 8px;
+  --font: 'Georgia', 'Times New Roman', serif;
+  --blur: none;
+}
+[data-theme="vinyl"] .app-shell {
+  background: radial-gradient(circle at 50% 50%, #2a1a10 0%, #0a0604 100%);
+  overflow: hidden;
+}
+[data-theme="vinyl"] .app-shell::before {
+  content: '';
+  position: absolute;
+  top: 50%; left: 50%;
+  width: 500px; height: 500px;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  background: repeating-radial-gradient(
+    circle at center,
+    transparent 0px, transparent 2px,
+    rgba(80, 50, 30, 0.15) 2px, rgba(80, 50, 30, 0.15) 3px
+  );
+  box-shadow: inset 0 0 60px rgba(0,0,0,0.8);
+  animation: vinylSpin 8s linear infinite;
+  z-index: 0;
+  pointer-events: none;
+  opacity: 0.4;
+}
+@keyframes vinylSpin { to { transform: translate(-50%, -50%) rotate(360deg); } }
+[data-theme="vinyl"] .app-shell::after {
+  content: '';
+  position: absolute;
+  top: 50%; left: 50%;
+  width: 40px; height: 40px;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  background: #d4a050;
+  z-index: 0;
+  pointer-events: none;
+  opacity: 0.3;
+}
+[data-theme="vinyl"] .app-shell > * { position: relative; z-index: 1; }
+[data-theme="vinyl"] .msg-self .msg-bubble { background: rgba(160, 100, 40, 0.3); border: 1px solid rgba(212, 160, 80, 0.4); }
+[data-theme="vinyl"] .msg-other .msg-bubble { background: rgba(40, 25, 15, 0.7); }
+[data-theme="vinyl"] .msg-author { font-style: italic; }
+
+/* ═══════════════════════════════════════════════════════ */
+/* 2. SPACE STATION CONSOLE — CRT terminal aesthetic      */
+/*    CSS-only: scanlines, green phosphor, monospace       */
+/* ═══════════════════════════════════════════════════════ */
+[data-theme="spacestation"] {
+  --bg: #030806;
+  --surface: rgba(0, 40, 20, 0.5);
+  --surface-hover: rgba(0, 60, 30, 0.5);
+  --border: rgba(0, 180, 80, 0.25);
+  --text: #00ff66;
+  --text-dim: rgba(0, 200, 80, 0.5);
+  --accent: #00cc55;
+  --accent-hover: #00aa44;
+  --input-bg: rgba(0, 20, 10, 0.8);
+  --scrollbar: rgba(0, 180, 80, 0.2);
+  --shell-radius: 4px;
+  --msg-radius: 2px;
+  --font: 'Courier New', 'Consolas', monospace;
+  --blur: none;
+}
+[data-theme="spacestation"] .app-shell {
+  background: #030806;
+  border: 2px solid rgba(0, 180, 80, 0.3);
+}
+/* CRT scanlines */
+[data-theme="spacestation"] .app-shell::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    to bottom,
+    transparent 0px,
+    transparent 2px,
+    rgba(0, 0, 0, 0.15) 2px,
+    rgba(0, 0, 0, 0.15) 4px
+  );
+  z-index: 0;
+  pointer-events: none;
+}
+[data-theme="spacestation"] .app-shell > * { position: relative; z-index: 1; }
+[data-theme="spacestation"] .titlebar { background: rgba(0, 30, 15, 0.8); border-bottom: 1px solid rgba(0, 180, 80, 0.2); }
+[data-theme="spacestation"] .titlebar-title { color: #00ff66; font-family: 'Courier New', monospace; }
+[data-theme="spacestation"] .msg-bubble { border: 1px solid rgba(0, 180, 80, 0.2); }
+[data-theme="spacestation"] .msg-other .msg-bubble { background: rgba(0, 20, 10, 0.6); }
+[data-theme="spacestation"] .msg-self .msg-bubble { background: rgba(0, 50, 25, 0.5); border-color: rgba(0, 255, 100, 0.3); }
+[data-theme="spacestation"] .msg-author { color: #00ff66; text-shadow: 0 0 4px rgba(0, 255, 100, 0.3); }
+[data-theme="spacestation"] .msg-content { text-shadow: 0 0 2px rgba(0, 255, 100, 0.2); }
+[data-theme="spacestation"] .msg-author::before { content: '> '; color: rgba(0, 180, 80, 0.5); }
+[data-theme="spacestation"] .msg-time { font-family: 'Courier New', monospace; }
+[data-theme="spacestation"] .input-box { border: 1px solid rgba(0, 180, 80, 0.3); }
+[data-theme="spacestation"] .send-btn { color: #030806; }
+[data-theme="spacestation"] .typing-text { text-shadow: 0 0 4px rgba(0, 255, 100, 0.3); }
+[data-theme="spacestation"] .conv-current { border: 1px solid rgba(0, 180, 80, 0.2); }
+
+/* ═══════════════════════════════════════════════════════ */
+/* 3. POLAROID WALL — cork board with polaroid cards      */
+/*    CSS-only: cork texture, tilted cards, handwriting   */
+/* ═══════════════════════════════════════════════════════ */
+[data-theme="polaroid"] {
+  --bg: #c4a882;
+  --surface: #fff;
+  --surface-hover: #f5f0ea;
+  --border: #b89870;
+  --text: #2a2420;
+  --text-dim: #7a6a58;
+  --accent: #e85050;
+  --accent-hover: #d04040;
+  --input-bg: #f5efe8;
+  --scrollbar: #b89870;
+  --shell-radius: 6px;
+  --msg-radius: 2px;
+  --font: 'Georgia', 'Segoe UI', serif;
+  --blur: none;
+}
+[data-theme="polaroid"] .app-shell {
+  /* Cork board pattern */
+  background-color: #c4a882;
+  background-image:
+    radial-gradient(ellipse at 20% 40%, rgba(180, 140, 100, 0.4) 0%, transparent 50%),
+    radial-gradient(ellipse at 80% 60%, rgba(160, 120, 80, 0.3) 0%, transparent 50%),
+    repeating-conic-gradient(rgba(0,0,0,0.02) 0% 25%, transparent 0% 50%) 0 0 / 8px 8px;
+}
+[data-theme="polaroid"] .titlebar { background: rgba(180, 150, 110, 0.9); }
+[data-theme="polaroid"] .titlebar-title { color: #5a4a38; }
+/* Each message is a polaroid card */
+[data-theme="polaroid"] .msg-bubble {
+  background: #fff;
+  border: none;
+  padding: 10px 10px 16px;
+  box-shadow: 2px 3px 8px rgba(0,0,0,0.2), 0 1px 3px rgba(0,0,0,0.1);
+  border-radius: 2px;
+}
+[data-theme="polaroid"] .msg-other .msg-bubble { transform: rotate(-0.8deg); background: #fff !important; }
+[data-theme="polaroid"] .msg-self .msg-bubble { transform: rotate(0.6deg); background: #fffdf8 !important; }
+[data-theme="polaroid"] .msg-author,
+[data-theme="polaroid"] .msg-self .msg-author { font-size: 10px; color: #e85050; font-weight: 700; }
+[data-theme="polaroid"] .msg-content,
+[data-theme="polaroid"] .msg-self .msg-content { color: #2a2420; font-size: 13px; }
+[data-theme="polaroid"] .msg-time,
+[data-theme="polaroid"] .msg-self .msg-time { color: #b0a090; }
+[data-theme="polaroid"] .msg-img { border: 1px solid #eee; }
+[data-theme="polaroid"] .input-box { border: 1px solid #d0c0a8; background: #fff; color: #2a2420; }
+[data-theme="polaroid"] .send-btn { color: #fff; }
+[data-theme="polaroid"] .conv-current { background: rgba(255,255,255,0.6); border: 1px solid #d0c0a8; }
+
+/* ═══════════════════════════════════════════════════════ */
+/* 4. ARCADE CABINET — retro game room, screen bezel      */
+/*    CSS-only: bezel frame, scanlines, pixel font        */
+/* ═══════════════════════════════════════════════════════ */
+[data-theme="arcade"] {
+  --bg: #0c0820;
+  --surface: rgba(20, 10, 50, 0.8);
+  --surface-hover: rgba(40, 20, 80, 0.8);
+  --border: #4422aa;
+  --text: #ffee55;
+  --text-dim: #aa8833;
+  --accent: #ff4444;
+  --accent-hover: #dd2222;
+  --input-bg: rgba(15, 8, 40, 0.9);
+  --scrollbar: #4422aa;
+  --shell-radius: 0px;
+  --msg-radius: 0px;
+  --font: 'Courier New', 'Consolas', monospace;
+  --blur: none;
+}
+[data-theme="arcade"] .app-shell {
+  background: #1a1a2e;
+  border: 4px solid #333;
+  box-shadow: inset 0 0 30px rgba(0,0,0,0.5);
+}
+/* Bezel frame */
+[data-theme="arcade"] .app-shell::before {
+  content: '';
+  position: absolute;
+  inset: 4px;
+  border: 3px solid #222;
+  box-shadow: inset 0 0 20px rgba(0,0,0,0.8);
+  z-index: 0;
+  pointer-events: none;
+  background: radial-gradient(ellipse at center, #0c0820 60%, #050310 100%);
+}
+/* Scanlines */
+[data-theme="arcade"] .app-shell::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(to bottom, transparent 0px, transparent 3px, rgba(0,0,0,0.08) 3px, rgba(0,0,0,0.08) 6px);
+  z-index: 0;
+  pointer-events: none;
+}
+[data-theme="arcade"] .app-shell > * { position: relative; z-index: 1; }
+[data-theme="arcade"] .titlebar { background: rgba(20, 10, 50, 0.9); border-bottom: 2px solid #4422aa; }
+[data-theme="arcade"] .titlebar-title { color: #ffee55; font-family: 'Press Start 2P', monospace; font-size: 8px; }
+[data-theme="arcade"] .msg-bubble { border: 2px solid; }
+[data-theme="arcade"] .msg-other .msg-bubble { background: rgba(20, 10, 50, 0.8); border-color: #4422aa; }
+[data-theme="arcade"] .msg-self .msg-bubble { background: rgba(80, 20, 20, 0.7); border-color: #ff4444; }
+[data-theme="arcade"] .msg-author { font-size: 9px; text-shadow: 1px 1px 0 #000; }
+[data-theme="arcade"] .msg-content { font-size: 10px; line-height: 1.6; }
+[data-theme="arcade"] .msg-time { font-size: 7px; font-family: 'Press Start 2P', monospace; }
+[data-theme="arcade"] .send-btn { border-radius: 0; font-family: 'Press Start 2P', monospace; font-size: 9px; border: 2px solid #ff4444; }
+[data-theme="arcade"] .input-box { border: 2px solid #4422aa; border-radius: 0; font-size: 10px; }
+[data-theme="arcade"] .conv-current { border: 2px solid #4422aa; border-radius: 0; }
+[data-theme="arcade"] .conv-dropdown { border: 2px solid #4422aa; border-radius: 0; }
+
+/* ═══════════════════════════════════════════════════════ */
+/* 5. OCEAN FLOOR — deep sea with bioluminescent glow     */
+/* Art: "Underwater World" by CraftPix.net (OGA-BY 3.0)   */
+/* ═══════════════════════════════════════════════════════ */
+[data-theme="ocean"] {
+  --bg: rgba(5, 15, 30, 0.85);
+  --surface: rgba(10, 30, 60, 0.7);
+  --surface-hover: rgba(15, 40, 80, 0.7);
+  --border: rgba(40, 120, 180, 0.3);
+  --text: #c0e8ff;
+  --text-dim: rgba(100, 180, 220, 0.6);
+  --accent: #00ddff;
+  --accent-hover: #00bbdd;
+  --input-bg: rgba(5, 15, 35, 0.85);
+  --scrollbar: rgba(40, 120, 180, 0.2);
+  --shell-radius: 12px;
+  --msg-radius: 10px;
+  --font: 'Inter', -apple-system, sans-serif;
+  --blur: blur(8px);
+}
+[data-theme="ocean"] .app-shell { border: 1px solid rgba(40, 120, 180, 0.2); }
+[data-theme="ocean"] .message-area { background-image: linear-gradient(rgba(5, 15, 30, 0.55), rgba(5, 15, 30, 0.55)), url("./assets/ocean.png"); background-size: cover; background-position: center; background-repeat: no-repeat; background-color: #030a18; image-rendering: pixelated; }
+
+[data-theme="ocean"] .msg-self .msg-bubble { background: rgba(0, 100, 140, 0.4); border: 1px solid rgba(0, 220, 255, 0.3); box-shadow: 0 0 10px rgba(0, 220, 255, 0.1); }
+[data-theme="ocean"] .msg-other .msg-bubble { background: rgba(5, 20, 45, 0.75); border: 1px solid rgba(40, 120, 180, 0.2); }
+[data-theme="ocean"] .msg-self .msg-author { color: #00ddff; }
+[data-theme="ocean"] .send-btn { color: #030a18; }
+[data-theme="ocean"] .titlebar { background: rgba(5, 15, 30, 0.85); }
+
+/* ═══════════════════════════════════════════════════════ */
+/* 6. NEON ALLEY — cyberpunk rain-soaked street            */
+/* Art: "Warped City" by ansimuz (CC0)                     */
+/* ═══════════════════════════════════════════════════════ */
+[data-theme="neonalley"] {
+  --bg: rgba(10, 5, 20, 0.88);
+  --surface: rgba(20, 10, 40, 0.7);
+  --surface-hover: rgba(30, 15, 55, 0.7);
+  --border: rgba(180, 40, 180, 0.3);
+  --text: #f0e0ff;
+  --text-dim: rgba(180, 140, 220, 0.6);
+  --accent: #ff44aa;
+  --accent-hover: #dd2288;
+  --input-bg: rgba(15, 5, 30, 0.85);
+  --scrollbar: rgba(180, 40, 180, 0.2);
+  --shell-radius: 10px;
+  --msg-radius: 6px;
+  --font: 'Inter', -apple-system, sans-serif;
+  --blur: blur(6px);
+}
+[data-theme="neonalley"] .app-shell { border: 1px solid rgba(180, 40, 180, 0.2); }
+[data-theme="neonalley"] .message-area { background-image: linear-gradient(rgba(10, 5, 25, 0.6), rgba(10, 5, 25, 0.6)), url("./assets/neonalley.png"); background-size: cover; background-position: center; background-repeat: no-repeat; background-color: #080318; image-rendering: pixelated; }
+
+/* Rain animation */
+
+@keyframes neonRain { to { background-position: 0 40px; } }
+
+[data-theme="neonalley"] .msg-self .msg-bubble { background: rgba(180, 30, 100, 0.25); border: 1px solid rgba(255, 68, 170, 0.4); box-shadow: 0 0 8px rgba(255, 68, 170, 0.15); }
+[data-theme="neonalley"] .msg-other .msg-bubble { background: rgba(10, 30, 80, 0.5); border: 1px solid rgba(40, 140, 255, 0.3); box-shadow: 0 0 6px rgba(40, 140, 255, 0.1); }
+[data-theme="neonalley"] .msg-self .msg-author { color: #ff44aa; text-shadow: 0 0 6px rgba(255, 68, 170, 0.4); }
+[data-theme="neonalley"] .msg-other .msg-author { color: #44aaff; text-shadow: 0 0 6px rgba(68, 170, 255, 0.4); }
+[data-theme="neonalley"] .titlebar { background: rgba(10, 5, 20, 0.85); }
+[data-theme="neonalley"] .send-btn { color: #080318; }
+
+/* ═══════════════════════════════════════════════════════ */
+/* 7. GARDEN — green meadow, trees, fresh outdoors         */
+/* Art: "Green Meadow" by CraftPix.net (OGA-BY 3.0)        */
+/* ═══════════════════════════════════════════════════════ */
+[data-theme="jpgarden"] {
+  --bg: rgba(15, 30, 18, 0.88);
+  --surface: rgba(30, 60, 35, 0.7);
+  --surface-hover: rgba(45, 80, 50, 0.7);
+  --border: rgba(140, 200, 130, 0.25);
+  --text: #e8f5dc;
+  --text-dim: rgba(180, 220, 160, 0.7);
+  --accent: #88cc55;
+  --accent-hover: #6fa83f;
+  --input-bg: rgba(15, 30, 18, 0.85);
+  --scrollbar: rgba(140, 200, 130, 0.3);
+  --shell-radius: 14px;
+  --msg-radius: 10px;
+  --font: 'Inter', -apple-system, sans-serif;
+  --blur: none;
+}
+[data-theme="jpgarden"] .app-shell { border: 1px solid rgba(140, 200, 130, 0.3); }
+[data-theme="jpgarden"] .message-area {
+  background-image: linear-gradient(rgba(10, 25, 12, 0.55), rgba(10, 25, 12, 0.55)), url("./assets/jpgarden.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-color: #0a190c;
+  image-rendering: pixelated;
+}
+
+[data-theme="jpgarden"] .msg-bubble { border: 1px solid; }
+[data-theme="jpgarden"] .msg-other .msg-bubble { background: rgba(15, 35, 18, 0.85); border-color: rgba(140, 200, 130, 0.25); }
+[data-theme="jpgarden"] .msg-self .msg-bubble { background: rgba(50, 100, 30, 0.55); border-color: rgba(136, 204, 85, 0.45); }
+[data-theme="jpgarden"] .msg-self .msg-author { color: #88cc55; }
+[data-theme="jpgarden"] .titlebar { background: rgba(15, 30, 18, 0.9); border-bottom: 1px solid rgba(140, 200, 130, 0.2); }
+[data-theme="jpgarden"] .send-btn { color: #0a190c; }
+
+/* ═══════════════════════════════════════════════════════ */
+/* 8. LIBRARY — old books, candlelight, parchment          */
+/* Art: "Pixel Art Bookcase" by bonzille (CC0)             */
+/* ═══════════════════════════════════════════════════════ */
+[data-theme="library"] {
+  --bg: rgba(35, 22, 12, 0.92);
+  --surface: rgba(55, 35, 20, 0.8);
+  --surface-hover: rgba(70, 45, 28, 0.8);
+  --border: rgba(140, 100, 60, 0.3);
+  --text: #f0e0c8;
+  --text-dim: rgba(180, 140, 100, 0.6);
+  --accent: #d4a050;
+  --accent-hover: #c08838;
+  --input-bg: rgba(30, 18, 8, 0.9);
+  --scrollbar: rgba(140, 100, 60, 0.3);
+  --shell-radius: 8px;
+  --msg-radius: 6px;
+  --font: 'Georgia', 'Times New Roman', serif;
+  --blur: none;
+}
+[data-theme="library"] .app-shell { border: 1px solid rgba(140, 100, 60, 0.2); }
+[data-theme="library"] .message-area {
+  background-image:
+    linear-gradient(rgba(20, 12, 5, 0.55), rgba(20, 12, 5, 0.55)),
+    url("./assets/library.png");
+  background-size: cover, 240px auto;
+  background-position: center, center;
+  background-repeat: no-repeat, repeat;
+  background-color: #1a110a;
+  image-rendering: pixelated;
+}
+
+/* Warm candlelight glow */
+
+
+[data-theme="library"] .msg-bubble { border: 1px solid rgba(140, 100, 60, 0.2); }
+[data-theme="library"] .msg-other .msg-bubble { background: rgba(30, 18, 10, 0.8); }
+[data-theme="library"] .msg-self .msg-bubble { background: rgba(80, 50, 20, 0.4); border-color: rgba(212, 160, 80, 0.3); }
+[data-theme="library"] .msg-author { font-style: italic; }
+[data-theme="library"] .titlebar { background: rgba(35, 22, 12, 0.9); }
+[data-theme="library"] .send-btn { color: #1a110a; }
+
+/* ═══════════════════════════════════════════════════════ */
+/* 9. TREEHOUSE — night forest, wooden planks, fireflies   */
+/* Art: "Forest Background" by ansimuz (CC0)               */
+/* ═══════════════════════════════════════════════════════ */
+[data-theme="treehouse"] {
+  --bg: rgba(10, 20, 15, 0.88);
+  --surface: rgba(25, 45, 30, 0.7);
+  --surface-hover: rgba(35, 60, 40, 0.7);
+  --border: rgba(80, 140, 70, 0.3);
+  --text: #d0f0c0;
+  --text-dim: rgba(120, 180, 100, 0.6);
+  --accent: #88cc55;
+  --accent-hover: #70aa44;
+  --input-bg: rgba(10, 20, 12, 0.85);
+  --scrollbar: rgba(80, 140, 70, 0.2);
+  --shell-radius: 12px;
+  --msg-radius: 8px;
+  --font: 'Inter', -apple-system, sans-serif;
+  --blur: blur(6px);
+}
+[data-theme="treehouse"] .app-shell { border: 1px solid rgba(80, 140, 70, 0.15); }
+[data-theme="treehouse"] .message-area { background-image: linear-gradient(rgba(8, 15, 10, 0.6), rgba(8, 15, 10, 0.6)), url("./assets/forest.png"); background-size: cover; background-position: center; background-repeat: no-repeat; background-color: #060e08; image-rendering: pixelated; }
+
+/* Fireflies */
+
+@keyframes fireflyDrift {
+  0% { opacity: 0.4; transform: translate(0, 0); }
+  50% { opacity: 1; transform: translate(3px, -2px); }
+  100% { opacity: 0.5; transform: translate(-2px, 3px); }
+}
+
+/* Wooden plank bubbles */
+[data-theme="treehouse"] .msg-bubble { border: 1px solid rgba(80, 140, 70, 0.2); }
+[data-theme="treehouse"] .msg-other .msg-bubble { background: rgba(20, 35, 15, 0.75); }
+[data-theme="treehouse"] .msg-self .msg-bubble { background: rgba(50, 90, 30, 0.35); border-color: rgba(136, 204, 85, 0.3); }
+[data-theme="treehouse"] .msg-self .msg-author { color: #88cc55; }
+[data-theme="treehouse"] .titlebar { background: rgba(10, 20, 15, 0.85); }
+[data-theme="treehouse"] .send-btn { color: #060e08; }
+
+/* ═══════════════════════════════════════════════════════ */
+/* 10. UNDERWATER RUINS — sunken temple, caustic light     */
+/* Art: "Underwater Fantasy" by ansimuz (CC-BY 3.0)        */
+/* ═══════════════════════════════════════════════════════ */
+[data-theme="ruins"] {
+  --bg: rgba(8, 18, 28, 0.88);
+  --surface: rgba(15, 35, 50, 0.7);
+  --surface-hover: rgba(20, 45, 65, 0.7);
+  --border: rgba(60, 140, 120, 0.25);
+  --text: #c8e8e0;
+  --text-dim: rgba(100, 170, 150, 0.6);
+  --accent: #d4aa40;
+  --accent-hover: #c09030;
+  --input-bg: rgba(8, 18, 25, 0.85);
+  --scrollbar: rgba(60, 140, 120, 0.2);
+  --shell-radius: 6px;
+  --msg-radius: 4px;
+  --font: 'Georgia', serif;
+  --blur: blur(6px);
+}
+[data-theme="ruins"] .app-shell { border: 1px solid rgba(60, 140, 120, 0.15); }
+[data-theme="ruins"] .message-area { background-image: linear-gradient(rgba(5, 12, 20, 0.55), rgba(5, 12, 20, 0.55)), url("./assets/ruins.png"); background-size: cover; background-position: center; background-repeat: no-repeat; background-color: #040c14; image-rendering: pixelated; }
+
+/* Caustic light ripple */
+
+@keyframes causticShift {
+  0% { opacity: 0.5; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.05); }
+  100% { opacity: 0.6; transform: scale(0.98); }
+}
+
+/* Stone tablet bubbles */
+[data-theme="ruins"] .msg-bubble { border: 1px solid; }
+[data-theme="ruins"] .msg-other .msg-bubble { background: rgba(10, 25, 35, 0.8); border-color: rgba(60, 140, 120, 0.2); }
+[data-theme="ruins"] .msg-self .msg-bubble { background: rgba(50, 80, 30, 0.3); border-color: rgba(212, 170, 64, 0.3); }
+[data-theme="ruins"] .msg-self .msg-author { color: #d4aa40; }
+[data-theme="ruins"] .msg-other .msg-author { color: #60c8b0; }
+[data-theme="ruins"] .titlebar { background: rgba(8, 18, 28, 0.85); }
+[data-theme="ruins"] .send-btn { color: #040c14; }
+
