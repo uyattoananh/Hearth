@@ -29,10 +29,11 @@ yarn-debug.log*
 .env
 .env.local
 
-# Screenshots / dev artifacts (root-level)
+# Screenshots / dev artifacts
 /*.png
 /screenshots/
 /screenshot_themes.py
+backend/*.png
 
 # Keep theme assets (under src/assets)
 !frontend/src/assets/*.png
