@@ -45,23 +45,38 @@ jobs:
       - name: Electron-builder (Windows)
         if: matrix.os == 'windows-latest'
         working-directory: frontend
-        run: npx electron-builder --win --publish never
+        shell: bash
+        run: npx electron-builder --win --publish never 2>&1 | tee build.log
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          DEBUG: electron-builder
+          CSC_IDENTITY_AUTO_DISCOVERY: 'false'
 
       - name: Electron-builder (macOS)
         if: matrix.os == 'macos-latest'
         working-directory: frontend
-        run: npx electron-builder --mac --publish never
+        run: npx electron-builder --mac --publish never 2>&1 | tee build.log
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          DEBUG: electron-builder
+          CSC_IDENTITY_AUTO_DISCOVERY: 'false'
 
       - name: Electron-builder (Linux)
         if: matrix.os == 'ubuntu-latest'
         working-directory: frontend
-        run: npx electron-builder --linux --publish never
+        run: npx electron-builder --linux --publish never 2>&1 | tee build.log
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          DEBUG: electron-builder
+          CSC_IDENTITY_AUTO_DISCOVERY: 'false'
+
+      - name: Upload build log
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: build-log-${{ matrix.os }}
+          path: frontend/build.log
+          if-no-files-found: ignore
 
       - name: Upload artifacts
         uses: actions/upload-artifact@v4
