@@ -37,6 +37,7 @@
   "build": {
     "appId": "com.discorddm.app",
     "productName": "Discord DM",
+    "publish": null,
     "directories": {
       "output": "dist-electron"
     },
