@@ -8,6 +8,9 @@ on:
     branches: [main]
   workflow_dispatch:
 
+permissions:
+  contents: write
+
 jobs:
   build:
     strategy:
@@ -81,17 +84,17 @@ jobs:
       - name: Post build log as commit comment on failure
         if: failure()
         shell: python
-        working-directory: frontend
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           REPO: ${{ github.repository }}
           SHA: ${{ github.sha }}
           OS: ${{ matrix.os }}
+          WORKSPACE: ${{ github.workspace }}
         run: |
           import json, os, urllib.request, pathlib
-          p = pathlib.Path('build.log')
+          p = pathlib.Path(os.environ['WORKSPACE']) / 'frontend' / 'build.log'
+          print('looking for', p, 'exists:', p.exists())
           if not p.exists():
-              print('no build.log')
               raise SystemExit(0)
           tail = p.read_text(errors='replace')[-60000:]
           body = f"### Build log ({os.environ['OS']})\n\n```\n{tail}\n```\n"
@@ -101,11 +104,15 @@ jobs:
               headers={
                   'Authorization': f"Bearer {os.environ['GH_TOKEN']}",
                   'Accept': 'application/vnd.github+json',
+                  'X-GitHub-Api-Version': '2022-11-28',
               },
               method='POST',
           )
           try:
-              print(urllib.request.urlopen(req).read().decode()[:300])
+              resp = urllib.request.urlopen(req)
+              print('posted:', resp.status, resp.read().decode()[:300])
+          except urllib.error.HTTPError as e:
+              print('HTTPError:', e.code, e.read().decode()[:500])
           except Exception as e:
               print('post failed:', e)
 
