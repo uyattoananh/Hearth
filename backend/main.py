@@ -14,6 +14,7 @@ from fastapi.middleware.cors import CORSMiddleware
 
 from config import HOST, PORT
 from services.discord_window import DiscordWindow
+from services.discord_launcher import ensure_cdp_ready
 from services.conversation_manager import ConversationManager
 from services.message_reader import MessageReader
 from services.message_sender import MessageSender
@@ -33,11 +34,12 @@ sender = MessageSender(discord_window)
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     logger.info("Starting Discord DM UI backend (CDP mode)...")
+    await asyncio.to_thread(ensure_cdp_ready)
     found = discord_window.find_window()
     if found:
         logger.info(f"Discord CDP connected: {discord_window.get_window_title()}")
     else:
-        logger.warning("Discord CDP not found — is Discord running with --remote-debugging-port=9222?")
+        logger.warning("Discord CDP not found after relaunch attempt")
 
     reader.enable_auto_poll(True)  # Safe now — no focus stealing with CDP
     await reader.start()
