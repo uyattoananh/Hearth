@@ -69,7 +69,6 @@
           ]
         }
       ],
-      "icon": "build/icon.png",
       "identity": null
     },
     "dmg": {
@@ -95,8 +94,7 @@
             "x64"
           ]
         }
-      ],
-      "icon": "build/icon.png"
+      ]
     },
     "nsis": {
       "oneClick": false,
@@ -113,8 +111,7 @@
             "x64"
           ]
         }
-      ],
-      "icon": "build/icon.png"
+      ]
     }
   }
 }
