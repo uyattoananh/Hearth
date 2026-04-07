@@ -2,7 +2,7 @@
   "name": "discord-dm-ui",
   "private": false,
   "version": "1.0.0",
-  "description": "Custom Discord DM UI \u2014 read and send DMs through your own interface",
+  "description": "Custom Discord DM UI - read and send DMs through your own interface",
   "main": "electron/main.cjs",
   "type": "module",
   "scripts": {
